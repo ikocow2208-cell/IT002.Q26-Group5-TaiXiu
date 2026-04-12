@@ -1,6 +1,4 @@
-# Mini_Project_Group_5
 # DỰ ÁN: MÔ PHỎNG CHIẾN THUẬT TÀI XỈU
-**TÀI LIỆU GIỚI THIỆU DỰ ÁN: MÔ PHỎNG CHIẾN THUẬT TÀI XỈU**
 **0. Khái niệm tài xỉu:**
 
 Tài xỉu là một trò chơi dưới hình thức cá cược. Trong trò chơi, có 03 viên xúc xắc 06 mặt được đánh số chấm từ 1-6, nhà cái sẽ lấy tổng của 03 mặt xúc xắc xuất hiện để ra một con số cuối cùng cho người chơi.
