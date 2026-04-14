@@ -1,8 +1,10 @@
+#pragma once
+
 struct Actor {
     double getBalance() const;
-    void setBalance(const double &);
-    void updateBalance(const double &);
+    void setBalance(double const &);
+    void updateBalance(double const &);
 
-  private:
+  protected:
     double dBalance;
 };

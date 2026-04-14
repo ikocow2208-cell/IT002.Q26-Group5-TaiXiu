@@ -1,3 +1,3 @@
 #include "../include/ABettingStrategy.h"
 
-void ABettingStrategy::reset() { this->dCurrentBet = this->dBaseBet; }
+void ABettingStrategy::reset() { dCurrentBet = dBaseBet; }
