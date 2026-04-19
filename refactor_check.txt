@@ -4,25 +4,25 @@ ABettingStrategy.h      1
 -----------------------------------------
 Actor.h                 1
 -----------------------------------------
-Constants.h             1
+Constants.h             1           Trung
 -----------------------------------------
 CSVExporter.h           1
 CSVExporter.cpp         4
 -----------------------------------------
 Dice.h                  1
 -----------------------------------------
-Fibonacci.h             0
+Fibonacci.h             0           Trung
 -----------------------------------------
 House.h                 1
 -----------------------------------------
-Martingale.h            0
-Martingale.cpp          2
+Martingale.h            0           Trung
+Martingale.cpp          2           Trung
 -----------------------------------------
-Paroli.h                0
-Paroli.h                2
+Paroli.h                0           Trung
+Paroli.h                2           Trung
 -----------------------------------------
-Player.h                1
-Player.cpp              1
+Player.h                1           Trung
+Player.cpp              1           Trung
 -----------------------------------------
 RoundRecord.h           2
 -----------------------------------------
