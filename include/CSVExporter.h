@@ -4,11 +4,13 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 /* QA: why do NOT use `using namespace std`*/
 class CSVExporter {
-    std::string sFilename;
+    string path;
 
   public:
-    CSVExporter(const std::string &);
-    void exportToCSV(const std::vector<RoundRecord> &);
+    CSVExporter(const string &);
+    void exportToCSV(const vector<RoundRecord> &);
 };

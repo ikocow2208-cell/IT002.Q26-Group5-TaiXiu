@@ -3,11 +3,12 @@
 #include "ABettingStrategy.h"
 
 class Fibonacci : public ABettingStrategy {
-    int currentIndex;
+    int current_idx;
+
     int getFibonacciMultiplier(int);
 
   public:
-    Fibonacci(double baseBet);
+    Fibonacci(double);
 
     Bet calNextBet(BetResult const &) override;
     void reset() override;

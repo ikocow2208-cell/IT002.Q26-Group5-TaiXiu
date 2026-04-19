@@ -7,15 +7,15 @@ using namespace std;
 
 /*
  * @brief Khởi tạo SimulationEngine với các thông số mô phỏng
- * @param totalRounds     Số ván cần chạy cho mỗi chiến thuật
- * @param initialBankroll Vốn ban đầu của người chơi
- * @param baseBet         Mức cược tối thiểu
- * @param maxBet          Mức cược tối đa
+ * @param total_rounds     Số ván cần chạy cho mỗi chiến thuật
+ * @param initial_bankroll Vốn ban đầu của người chơi
+ * @param base_bet         Mức cược tối thiểu
+ * @param max_bet          Mức cược tối đa
  */
-SimulationEngine::SimulationEngine(int totalRounds, double initialBankroll,
-                                   double baseBet, double maxBet)
-    : totalRounds(totalRounds), initialBankroll(initialBankroll),
-      baseBet(baseBet), maxBet(maxBet) {}
+SimulationEngine::SimulationEngine(int total_rounds, double initial_bankroll,
+                                   double base_bet, double max_bet)
+    : total_rounds(total_rounds), initial_bankroll(initial_bankroll),
+      base_bet(base_bet), max_bet(max_bet) {}
 
 /*
  * @brief Đăng ký một chiến thuật vào danh sách mô phỏng
@@ -27,12 +27,12 @@ void SimulationEngine::addStrategy(string const &name,
     strategies.emplace_back(name, std::move(factory));
 }
 
-/*
+/* *
  * @brief Chạy toàn bộ mô phỏng
  *
  * Mỗi chiến thuật được chạy riêng với srand(42) ở đầu → cùng chuỗi
  * xúc xắc → so sánh công bằng giữa các chiến thuật.
- */
+ * */
 void SimulationEngine::run() {
     results.clear();
     for (auto &[name, factory] : strategies) {
@@ -51,14 +51,14 @@ void SimulationEngine::run() {
  * @return Danh sách RoundRecord của chiến thuật đó
  */
 vector<RoundRecord> SimulationEngine::runOne(StrategyFactory &factory) {
-    House house(0.05, baseBet, maxBet);
-    Player player(initialBankroll);
+    House house(0.05, base_bet, max_bet);
+    Player player(initial_bankroll);
     player.setStrategy(factory()); // Gán chiến thuật mới
     player.placeBet(
         BetResult::Win); // Tính cược đầu tiên (giả sử ván trước thắng)
 
     Table table(house, std::move(player));
-    for (int i = 0; i < totalRounds; i++)
+    for (int i = 0; i < total_rounds; i++)
         table.play();
 
     return table.getRecords();
@@ -77,18 +77,16 @@ bool SimulationEngine::exportCSV(string const &filename) const {
     if (!file.is_open())
         return false;
 
-    /* QA: do NOT use spaces in fields' names */
-    // Header
-    file << "Strategy,Round,Bet Side,Bet Amount,Result,Bankroll\n";
+    file << "strategy,round,side,amount,result,bankroll\n";
 
     for (auto const &[name, records] : results) {
         int round = 1;
         for (auto const &r : records) {
             file << name << "," << round++ << ","
                  << (r.bet.type == BetType::Xiu ? "Xiu" : "Tai") << ","
-                 << r.bet.dAmount << ","
+                 << r.bet.amount << ","
                  << (r.result == BetResult::Win ? "Win" : "Lose") << ","
-                 << r.dCurrentBankroll << "\n";
+                 << r.current_bankroll << "\n";
         }
     }
     return true;

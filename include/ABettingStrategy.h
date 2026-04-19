@@ -3,22 +3,23 @@
 enum class BetType { Tai, Xiu };
 enum class BetResult { Win, Lose };
 
-struct Bet {
+class Bet {
+  public:
     Bet(BetType, double);
 
     BetType type;
-    double dAmount;
+    double amount;
 };
 
-struct ABettingStrategy {
-    virtual Bet calNextBet(BetResult const &prevResult) = 0;
+class ABettingStrategy {
+  public:
     virtual ~ABettingStrategy() = default;
 
+    virtual Bet calNextBet(BetResult const &) = 0;
     virtual void reset();
 
   protected:
-    double dBaseBet, dCurrentBet;
-
-    /* QA: public or protected ? */
     ABettingStrategy(double);
+
+    double base_bet, current_bet;
 };

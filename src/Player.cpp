@@ -1,26 +1,22 @@
 #include "../include/Player.h"
 
-/* QA: wrong comment's format, see other files for reference */
+/* *
+ * QA: add comments
+ * */
 
-// 1. Constructor: Khởi tạo vốn thông qua hàm của Actor
-Player::Player(double initialBalance) : currentBet(BetType::Xiu, 0.0) {
-    setBalance(initialBalance);
-    this->strategy = nullptr;
+Player::Player(double initial_balance) : current_bet(BetType::Xiu, 0.0) {
+    setBalance(initial_balance);
+    strategy = nullptr;
 }
 
-// 2. Hàm gán chiến thuật
-void Player::setStrategy(std::unique_ptr<ABettingStrategy> newStrategy) {
-    this->strategy = std::move(newStrategy);
+void Player::setStrategy(unique_ptr<ABettingStrategy> newStrategy) {
+    strategy = std::move(newStrategy);
 }
 
-// 3. Hàm cốt lõi: Uỷ quyền cho chiến thuật tính toán và cập nhật currentBet
-void Player::placeBet(BetResult const &prevResult) {
+void Player::placeBet(BetResult const &prev_result) {
     if (strategy != nullptr) {
-        // Chiến thuật sẽ tính toán trả về Object Bet (bao gồm cửa cược và số
-        // tiền)
-        currentBet = strategy->calNextBet(prevResult);
+        current_bet = strategy->calNextBet(prev_result);
     }
 }
 
-// 4. Hàm lấy thông tin ván cược hiện tại
-Bet Player::getCurrentBet() const { return currentBet; }
+Bet Player::getCurrentBet() const { return current_bet; }

@@ -1,33 +1,49 @@
 File                    QA          Name
 +++++++++++++++++++++++++++++++++++++++++
-ABettingStrategy.h      1
+ABettingStrategy.h      0
 -----------------------------------------
-Actor.h                 1
+Actor.h                 0
+Actor.cpp               1
 -----------------------------------------
-Constants.h             1           Trung
+Constants.h             1
 -----------------------------------------
-CSVExporter.h           1
-CSVExporter.cpp         4
+CSVExporter.h           0
+CSVExporter.cpp         0
 -----------------------------------------
-Dice.h                  1
+Dice.h                  0
 -----------------------------------------
-Fibonacci.h             0           Trung
+Fibonacci.h             0
 -----------------------------------------
 House.h                 1
 -----------------------------------------
-Martingale.h            0           Trung
-Martingale.cpp          2           Trung
+Martingale.h            0
+Martingale.cpp          1 
 -----------------------------------------
-Paroli.h                0           Trung
-Paroli.h                2           Trung
+Paroli.h                0 
+Paroli.h                1 
 -----------------------------------------
-Player.h                1           Trung
-Player.cpp              1           Trung
+Player.h                0
+Player.cpp              1
 -----------------------------------------
-RoundRecord.h           2
+RoundRecord.h           0
 -----------------------------------------
 SimulationEngine.h      1
-SimulationEngine.cpp    1
+SimulationEngine.cpp    0
 -----------------------------------------
 Table.h                 1
 -----------------------------------------
+
+class: ClassName
+function/method: functionName
+variable: variable_name
+
+Dạng comment cần dùng:
+    /* *
+     * @brief <short explanation>
+     * @param <name> <details>
+     * @return <type> <short explanation>
+     * */
+
+Đặt comment ở đầu các hàm trong file đuôi .cpp trong src/, không phải các file đuôi .h trong inclde/
+
+Trong các file đuôi .h, không cần đặt tên cho tham số trong hàm/phương thức

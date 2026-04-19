@@ -2,9 +2,9 @@
 #include "Actor.h"
 
 class House : public Actor {
-    double dCommissionRate;
-    double dMinBet;
-    double dMaxBet;
+    double commission_rate;
+    double min_bet;
+    double max_bet;
 
   public:
     House(double, double, double);
@@ -13,6 +13,5 @@ class House : public Actor {
     double getMinBet() const;
     double getMaxBet() const;
 
-    /* QA: what is `clampBet` ? */
     double clampBet(double) const;
 };

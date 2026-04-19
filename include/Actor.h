@@ -1,13 +1,13 @@
 #pragma once
 
-struct Actor {
+class Actor {
+  public:
     virtual ~Actor() = default;
 
     double getBalance() const;
-    /* QA: use `const &` to avoid memory leak ? */
-    void setBalance(double amount);
-    void updateBalance(double amount);
+    void setBalance(double);
+    void updateBalance(double);
 
   protected:
-    double dBalance;
+    double balance;
 };
