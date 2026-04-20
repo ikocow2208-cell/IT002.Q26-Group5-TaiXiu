@@ -1,10 +1,6 @@
 #include "../include/Player.h"
 #include <cstdlib>
 
-/* *
- * QA: add comments
- * */
-
 Player::Player(double initial_balance) : current_bet(BetType::Xiu, 0.0) {
     setBalance(initial_balance);
     strategy = nullptr;
@@ -17,8 +13,8 @@ Player::Player(double initial_balance) : current_bet(BetType::Xiu, 0.0) {
  * hưởng bởi state còn sót. Cược đầu set trực tiếp thay vì gọi calNextBet()
  * để không làm tăng cược ngay ở ván 1.
  */
-void Player::setStrategy(unique_ptr<ABettingStrategy> newStrategy) {
-    strategy = std::move(newStrategy);
+void Player::setStrategy(unique_ptr<ABettingStrategy> new_strategy) {
+    strategy = std::move(new_strategy);
     strategy->reset();
     BetType side = (rand() % 2 == 0) ? BetType::Xiu : BetType::Tai;
     current_bet = Bet(side, strategy->getBaseBet());
