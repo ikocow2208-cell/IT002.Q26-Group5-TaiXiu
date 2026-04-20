@@ -20,10 +20,22 @@ void Player::setStrategy(unique_ptr<ABettingStrategy> new_strategy) {
     current_bet = Bet(side, strategy->getBaseBet());
 }
 
-void Player::placeBet(BetResult const &prev_result) {
-    if (strategy != nullptr) {
+/* *
+ * @brief Thực hiện đặt cược cho lượt tiếp theo dựa trên kết quả trước đó.
+ * @param prev_result Kết quả của lượt cược vừa diễn ra.
+ * @return void Không trả về giá trị.
+ * */
+void Player::placeBet(BetResult const &prev_result)
+{
+    if (strategy != nullptr)
+    {
         current_bet = strategy->calNextBet(prev_result);
     }
 }
 
+/* *
+ * @brief Lấy thông tin về lượt cược hiện tại của người chơi.
+ * @param Không có tham số.
+ * @return Bet Đối tượng Bet chứa cửa đặt và số tiền cược hiện tại.
+ * */
 Bet Player::getCurrentBet() const { return current_bet; }

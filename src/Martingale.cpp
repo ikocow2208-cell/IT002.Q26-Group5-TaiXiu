@@ -2,15 +2,25 @@
 #include <cstdlib>
 
 /* *
- * QA: add comments
+ * @brief Khởi tạo chiến thuật đặt cược Martingale.
+ * @param base_bet Mức tiền cược cơ bản ban đầu.
+ * @return None Không có.
  * */
-
 Martingale::Martingale(double base_bet) : ABettingStrategy(base_bet) {}
 
-Bet Martingale::calNextBet(BetResult const &prev_result) {
-    if (prev_result == BetResult::Win) {
+/* *
+ * @brief Tính toán lượt cược tiếp theo (gấp đôi mức cược nếu thua, về mức cơ bản nếu thắng).
+ * @param prev_result Kết quả của lượt cược trước đó (BetResult).
+ * @return Bet Đối tượng Bet chứa thông tin cửa đặt và số tiền cược được tính toán.
+ * */
+Bet Martingale::calNextBet(BetResult const &prev_result)
+{
+    if (prev_result == BetResult::Win)
+    {
         current_bet = base_bet;
-    } else {
+    }
+    else
+    {
         current_bet *= 2;
     }
 
