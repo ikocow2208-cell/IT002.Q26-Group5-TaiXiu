@@ -2,39 +2,33 @@
 #include <cstdlib>
 
 /* *
- * @brief Khởi tạo chiến thuật đặt cược Paroli với mức cược cơ sở và mục tiêu thắng liên tiếp.
+ * @brief Khởi tạo chiến thuật đặt cược Paroli với mức cược cơ sở và mục tiêu
+ * thắng liên tiếp.
  * @param base_bet Mức tiền cược cơ bản ban đầu.
  *        target_wins Số trận thắng liên tiếp mục tiêu để dừng chuỗi tăng cược.
- * @return None Không có.
  * */
-Paroli::Paroli(double base_bet, int target_wins) : ABettingStrategy(base_bet)
-{
+Paroli::Paroli(double base_bet, int target_wins) : ABettingStrategy(base_bet) {
     consecutive_wins = 0;
     this->target_wins = target_wins;
 }
 
 /* *
- * @brief Tính toán lượt cược tiếp theo (gấp đôi mức cược khi thắng cho đến khi đạt mục tiêu, về mức cơ bản nếu thua).
+ * @brief Tính toán lượt cược tiếp theo (gấp đôi mức cược khi thắng cho đến khi
+ * đạt mục tiêu, về mức cơ bản nếu thua).
  * @param prev_result Kết quả của lượt cược trước đó (BetResult).
- * @return Bet Đối tượng Bet chứa thông tin cửa đặt và số tiền cược được tính toán.
+ * @return Bet Đối tượng Bet chứa thông tin cửa đặt và số tiền cược được tính
+ * toán.
  * */
-Bet Paroli::calNextBet(BetResult const &prev_result)
-{
-    if (prev_result == BetResult::Win)
-    {
+Bet Paroli::calNextBet(BetResult const &prev_result) {
+    if (prev_result == BetResult::Win) {
         consecutive_wins++;
-        if (consecutive_wins >= target_wins)
-        {
+        if (consecutive_wins >= target_wins) {
             current_bet = base_bet;
             consecutive_wins = 0;
-        }
-        else
-        {
+        } else {
             current_bet *= 2;
         }
-    }
-    else
-    {
+    } else {
         current_bet = base_bet;
         consecutive_wins = 0;
     }
@@ -44,12 +38,12 @@ Bet Paroli::calNextBet(BetResult const &prev_result)
 }
 
 /* *
- * @brief Đặt lại trạng thái chiến thuật (reset số trận thắng liên tiếp và mức cược).
- * @param None Không có tham số.
- * @return void Không trả về giá trị.
+ * @brief Đặt lại trạng thái chiến thuật (reset số trận thắng liên tiếp và mức
+ * cược).
+ * @param void
+ * @return void trả về giá trị.
  * */
-void Paroli::reset()
-{
+void Paroli::reset() {
     ABettingStrategy::reset();
     consecutive_wins = 0;
 }

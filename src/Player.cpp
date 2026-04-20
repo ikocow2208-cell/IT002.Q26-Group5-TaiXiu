@@ -12,6 +12,8 @@ Player::Player(double initial_balance) : current_bet(BetType::Xiu, 0.0) {
  * reset() đưa strategy về trạng thái sạch — tránh Paroli/Fibonacci bị ảnh
  * hưởng bởi state còn sót. Cược đầu set trực tiếp thay vì gọi calNextBet()
  * để không làm tăng cược ngay ở ván 1.
+ * @param new_strategy
+ * @return void
  */
 void Player::setStrategy(unique_ptr<ABettingStrategy> new_strategy) {
     strategy = std::move(new_strategy);
@@ -23,19 +25,17 @@ void Player::setStrategy(unique_ptr<ABettingStrategy> new_strategy) {
 /* *
  * @brief Thực hiện đặt cược cho lượt tiếp theo dựa trên kết quả trước đó.
  * @param prev_result Kết quả của lượt cược vừa diễn ra.
- * @return void Không trả về giá trị.
+ * @return void
  * */
-void Player::placeBet(BetResult const &prev_result)
-{
-    if (strategy != nullptr)
-    {
+void Player::placeBet(BetResult const &prev_result) {
+    if (strategy != nullptr) {
         current_bet = strategy->calNextBet(prev_result);
     }
 }
 
 /* *
  * @brief Lấy thông tin về lượt cược hiện tại của người chơi.
- * @param Không có tham số.
+ * @param void
  * @return Bet Đối tượng Bet chứa cửa đặt và số tiền cược hiện tại.
  * */
 Bet Player::getCurrentBet() const { return current_bet; }
